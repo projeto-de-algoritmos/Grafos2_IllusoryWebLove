@@ -8,16 +8,15 @@ const minWeight = 1
 const maxWeight = 5
 
 export default function generateGraph() {
-    const graph = [];
     const numberOfNodes = getRandomNumber(minNodes, maxNodes)
 
     const nodes = getNodes(numberOfNodes)
     const edges = getEdges(nodes)
+    const graph = getGraph(nodes, edges)
     
     console.log('---')
-    console.log('numberOfNodes: ', numberOfNodes)
-    console.log(nodes)
-    console.log(edges)
+    console.log('Grafo:')
+    console.log(graph)
     console.log('---')
 
     return numberOfNodes
@@ -55,11 +54,9 @@ function getEdges(nodes) {
 
     for (let i = 0; i < nodes.length; i++) {
         let numberOfNeighboor = getRandomNumber(minNeighboor, maxNeighboor)
-        console.log('vizinhos', numberOfNeighboor)
 
         for (let j = 0; j < numberOfNeighboor; j++) {
-            let nodeIndex2 = diferentEdge(i, nodes.length - 1)
-            const edge = searchEdge(edges, i, nodeIndex2, nodes.length - 1)
+            const edge = creatEdge(edges, i, nodes.length - 1)
 
             edges.push(edge)
         }
@@ -68,25 +65,28 @@ function getEdges(nodes) {
     return edges
 }
 
+function getGraph(nodes, edges) {
+    return nodes.concat(edges);
+}
+
 function getRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function searchEdge(edges, nodeIndex1, nodeIndex2) {
-    let a
-    let b
+function creatEdge(edges, nodeIndex1, length) {
+    for(let i = 0; i < 10000; i++) {
+        let nodeIndex2 = takeDiferentNode(nodeIndex1, length)
 
-    a = edges.find((edge) => edge.source === data[nodeIndex1].name && edge.target === data[nodeIndex2].name) ? true : false
-    b = edges.find((edge) => edge.source === data[nodeIndex2].name && edge.target === data[nodeIndex1].name) ? true : false
-    
-    if (a || b) {
-        return objectEdge(nodeIndex1, null)
-    }
+        let a = edges.find((edge) => edge.source === data[nodeIndex1].name && edge.target === data[nodeIndex2].name) ? true : false
+        let b = edges.find((edge) => edge.source === data[nodeIndex2].name && edge.target === data[nodeIndex1].name) ? true : false
 
-    return objectEdge(nodeIndex1, nodeIndex2)
+        if (a === false && b === false) {
+            return objectEdge(nodeIndex1, nodeIndex2)
+        }
+    }    
 }
 
-function diferentEdge(nodeIndex1, length) {
+function takeDiferentNode(nodeIndex1, length) {
     let nodeIndex2 = getRandomNumber(0, length)
 
     if (nodeIndex1 === nodeIndex2) {
