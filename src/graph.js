@@ -14,19 +14,75 @@ export default function generateGraph() {
     const edges = getEdges(nodes)
     const graph = getGraph(nodes, edges)
     
+    const dijkstraGraph = dijkstra(nodes, edges, nodes[0], nodes[nodes.length - 1])
+    
     console.log('---')
-    console.log('Grafo:')
-    console.log(graph)
+    /* console.log('Grafo:')
+    console.log(graph) */
     console.log('---')
 
     return numberOfNodes
 }
 
-function objectNode(nodeIndex) {
+function dijkstra(nodes, edges, inicio, fim) {
+    if (inicio.cidade === fim.cidade) {
+        return
+    } else {
+        console.log(edges, inicio, fim)
+    }
+
+    let nodesExplorados = []
+    let candidatosEdge = []
+
+    //Primeiro nó nos nos explorados
+    let noAtual = inicio
+
+    while(true) {
+        //Inserindo o nó como nó vizitado
+        nodesExplorados.push(noAtual)
+
+        //Verifica as arestas vizinhas do nó
+        candidatos = edges.filter(function (el) {
+            return el.source === noAtual.cidade
+        })
+        
+        //Insere as aresta vizinhas como candidatas para caminho
+        candidatosEdge.push(candidatos)
+        
+        //Buscando o caminho de menor peso
+        let menorCaminho = candidatosEdge[0].weight
+        for (let j = 0; j < candidatosEdge.length; j++) {
+            if (candidatosEdge[j].weight < menorCaminho) {
+                menorCaminho = candidatosEdge[j].weight
+                //Atualizando a aresta de menor peso para caminhar
+                noAtual = candidatosEdge[j]
+            }
+        }
+        
+        //Retirando a proxima aresta das candidatas a caminhos
+        candidatosEdge.splice(candidatosEdge.indexOf(noAtual), 1)
+
+        if (candidatosEdge.length === 0) {
+            break
+        }
+    }
+
+    return
+}
+
+function objectPossivelCaminho(nodeIndex) {
     return {
         group: 'node',
         id: nodeIndex,
         cidade: data[nodeIndex].name
+    }
+}
+
+function objectNode(nodeIndex) {
+    return {
+        weight: 'node',
+        source: null,
+        target: null
     }
 }
 
