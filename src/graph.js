@@ -35,7 +35,7 @@ function objectEdge(sourceNodeIndex, targetNodeIndex) {
     return {
         group: 'edge',
         source: data[sourceNodeIndex].name, 
-        target: data[targetNodeIndex].name,
+        target: targetNodeIndex !== null ? data[targetNodeIndex].name: null,
         weight: getRandomNumber(minWeight, maxWeight)
     }
 }
@@ -58,7 +58,8 @@ function getEdges(nodes) {
         console.log('vizinhos', numberOfNeighboor)
 
         for (let j = 0; j < numberOfNeighboor; j++) {
-            const edge = searchEdge(edges, i, nodes.length - 1)
+            let nodeIndex2 = diferentEdge(i, nodes.length - 1)
+            const edge = searchEdge(edges, i, nodeIndex2, nodes.length - 1)
 
             edges.push(edge)
         }
@@ -71,23 +72,30 @@ function getRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function searchEdge(edges, nodeIndex1, length) {
+function searchEdge(edges, nodeIndex1, nodeIndex2) {
     let a
     let b
-    let nodeIndex2
 
-    do {
-        nodeIndex2 = getRandomNumber(0, length)
-        console.log(nodeIndex1, nodeIndex2)
-
-        a = edges.find((edge) => edge.source === data[nodeIndex1].name && edge.target === data[nodeIndex2].name) ? true : false
-        b = edges.find((edge) => edge.source === data[nodeIndex2].name && edge.target === data[nodeIndex1].name) ? true : false
-        console.log(a, b)
-        console.log((nodeIndex1 === nodeIndex2) || a || b)
-    } while(nodeIndex1 === nodeIndex2)
-        
-        //return searchEdge(edges, nodeIndex1, length)
-    console.log('++++')
+    a = edges.find((edge) => edge.source === data[nodeIndex1].name && edge.target === data[nodeIndex2].name) ? true : false
+    b = edges.find((edge) => edge.source === data[nodeIndex2].name && edge.target === data[nodeIndex1].name) ? true : false
     
+    if (a || b) {
+        return objectEdge(nodeIndex1, null)
+    }
+
     return objectEdge(nodeIndex1, nodeIndex2)
+}
+
+function diferentEdge(nodeIndex1, length) {
+    let nodeIndex2 = getRandomNumber(0, length)
+
+    if (nodeIndex1 === nodeIndex2) {
+        if (nodeIndex2 > length/2) {
+            nodeIndex2 -= 1
+        } else {
+            nodeIndex2 += 1
+        }
+    }
+
+    return nodeIndex2
 }
