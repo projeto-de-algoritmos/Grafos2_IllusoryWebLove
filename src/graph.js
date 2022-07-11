@@ -55,6 +55,7 @@ function getEdges(nodes) {
 
     for (let i = 0; i < nodes.length; i++) {
         let numberOfNeighboor = getRandomNumber(minNeighboor, maxNeighboor)
+        console.log('vizinhos', numberOfNeighboor)
 
         for (let j = 0; j < numberOfNeighboor; j++) {
             const edge = searchEdge(edges, i, nodes.length - 1)
@@ -73,20 +74,20 @@ function getRandomNumber(min, max) {
 function searchEdge(edges, nodeIndex1, length) {
     let a
     let b
-    let aux
+    let nodeIndex2
 
     do {
-        aux = getRandomNumber(0, length)
-        console.log(nodeIndex1, aux)
+        nodeIndex2 = getRandomNumber(0, length)
+        console.log(nodeIndex1, nodeIndex2)
 
-        a = edges.find((edge) => edge.source === data[nodeIndex1].name && edge.target === data[aux].name) ? true : false
-        b = edges.find((edge) => edge.source === data[aux].name && edge.target === data[nodeIndex1].name) ? true : false
+        a = edges.find((edge) => edge.source === data[nodeIndex1].name && edge.target === data[nodeIndex2].name) ? true : false
+        b = edges.find((edge) => edge.source === data[nodeIndex2].name && edge.target === data[nodeIndex1].name) ? true : false
         console.log(a, b)
-        console.log((nodeIndex1 === aux) || a || b)
-    } while((nodeIndex1 === aux))
+        console.log((nodeIndex1 === nodeIndex2) || a || b)
+    } while(nodeIndex1 === nodeIndex2)
         
         //return searchEdge(edges, nodeIndex1, length)
     console.log('++++')
     
-    return objectEdge(nodeIndex1, aux)
+    return objectEdge(nodeIndex1, nodeIndex2)
 }
