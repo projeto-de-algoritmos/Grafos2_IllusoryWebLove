@@ -3,6 +3,8 @@
 **Número da Lista**: 2<br>
 **Conteúdo da Disciplina**: Grafos2<br>
 
+## Vídeo da apresentação: [Vídeo](https://youtu.be/SihVlykqmLQ)
+
 ## Alunos
 |Matrícula | Aluno |
 | -- | -- |
