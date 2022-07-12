@@ -1,7 +1,7 @@
 import { data } from "./services/data";
 
-const minNodes = 4
-const maxNodes = 6
+const minNodes = 7
+const maxNodes = 7
 const minNeighboor = 1
 const maxNeighboor = 2
 const minWeight = 1
@@ -15,13 +15,8 @@ export default function generateGraph() {
     const graph = getGraph(nodes, edges)
     
     const dijkstraGraph = dijkstra(nodes, edges, nodes[0], nodes[nodes.length - 1])
-    
-    console.log('---')
-    /* console.log('Grafo:')
-    console.log(graph) */
-    console.log('---')
 
-    return numberOfNodes
+    return {graph: graph, nodes: nodes};
 }
 
 function dijkstra(nodes, edges, inicio, fim) {

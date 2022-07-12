@@ -1,30 +1,59 @@
+function getRandomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+const minNodes = 100
+const maxNodes = 1000
+
 export const data = [
-    {
-        "id": "1",
-        "name": "São Paulo",
-    },
-    {
-        "id": "2",
-        "name": "Espírito Santo",
-    },
-    {
-        "id": "3",
-        "name": "Minas Gerais",
-    },
-    {
-        "id": "4",
-        "name": "Rio de Janeiro",
-    },
-    {
-        "id": "5",
-        "name": "Santa Catarina",
-    },
-    {
-        "id": "6",
-        "name": "Paraná",
-    },
-    {
-        "id": "7",
-        "name": "Rio Grande do Sul",
-    }
+    [
+        "SP",
+        "RJ",
+        getRandomNumber(minNodes, maxNodes)
+    ],
+    [
+        "SP",
+        "MG",
+        getRandomNumber(minNodes, maxNodes)
+    ],
+    [
+        "SP",
+        "SC",
+        getRandomNumber(minNodes, maxNodes)
+    ],
+    [
+        "RJ",
+        "RS",
+        getRandomNumber(minNodes, maxNodes)
+    ],
+    [
+        "RJ",
+        "MG",
+        getRandomNumber(minNodes, maxNodes)
+    ],
+    [
+        "MG",
+        "SC",
+        getRandomNumber(minNodes, maxNodes)
+    ],
+    [
+        "MG",
+        "TO",
+        getRandomNumber(minNodes, maxNodes)
+    ],
+    [
+        "SC",
+        "TO",
+        getRandomNumber(minNodes, maxNodes)
+    ],
+    [
+        "TO",
+        "RS",
+        getRandomNumber(minNodes, maxNodes)
+    ],
+    [
+        "RS",
+        "RJ",
+        getRandomNumber(minNodes, maxNodes)
+    ]
 ]
