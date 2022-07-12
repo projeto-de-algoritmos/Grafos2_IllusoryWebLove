@@ -29,7 +29,7 @@ function App() {
     {!showRoad ? (
       <Flex bg={"#"} justifyContent={"center"} alignItems={"center"} flexDirection={"column"} h='calc(100vh)' mx={64} fontSize={20}>
         <img style={{height: '300px', marginBottom: "35px"}} src={hearth} alt="hearth"/>
-        <Box marginBottom={24}>O que era para ser um encontro apaixonado se transformou em dias de aflição para o jovem Matheus Quadros. 
+        <Box marginBottom={24}>O que era para ser um encontro apaixonado se transformou em dias de aflição para um jovem. 
           O rapaz, de 18 anos, deixou Gravataí-RS rumo a São Paulo para conhecer pessoalmente a namorada virtual, mas não só não encontrou-a, como precisou ser resgatado.
           Após esse momento muito triste na vida de Matheus, ele resolveu aproveitar a viagem e conhecer mais alguns estados do Brasil que ainda não conhecia. Os estados que estão na rota de Matheus são:
           SP, RJ, MG, SC, RS e TO. Ajude Matheus a encontrar o menor percurso para visitar estes estados.
