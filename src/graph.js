@@ -42,7 +42,7 @@ function dijkstra(nodes, edges, inicio, fim) {
         nodesExplorados.push(noAtual)
 
         //Verifica as arestas vizinhas do nó
-        candidatos = edges.filter(function (el) {
+        let candidatos = edges.filter(function (el) {
             return el.source === noAtual.cidade
         })
         
