@@ -80,9 +80,9 @@ function objectPossivelCaminho(nodeIndex) {
 
 function objectNode(nodeIndex) {
     return {
-        weight: 'node',
-        source: null,
-        target: null
+        group: 'node',
+        id: nodeIndex,
+        cidade: data[nodeIndex].name
     }
 }
 
